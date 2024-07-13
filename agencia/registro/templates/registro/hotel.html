@@ -1,0 +1,77 @@
+{% extends 'registro/menu.html' %}
+
+{% block titulo %}
+<h1 class="mb-5"style="font-size: 3.8rem;">Hotel</h1>                                
+{% endblock titulo %}
+
+
+{% block contenido %}   
+
+<style>
+    .table {
+        color: white; /* Color de texto blanco */
+        margin: 0 auto; /* Centrar la tabla */
+        width: 80%; /* Ancho de la tabla reducido */
+    }
+    .table th, .table td {
+        padding: 0.5rem; /* Reducir el padding de las celdas */
+    }
+    .table th {
+        background-color: #343a40; /* Color de fondo para los encabezados */
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #495057; /* Color de fondo alterno para filas */
+    }
+</style>
+
+<table>
+    <tr>
+        <td width="200"style="color:white"><h2>Hotel</h2></td>
+        <td>
+            <a
+            href="{% url 'hotelform' %}"
+            class="btn btn-primary btn-sm"
+            ><i class="fa fa-plus fa-lg" title="Crear"> </i>
+            </a>
+        </td>        
+    </tr>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>CheckIn</th>
+            <th>CheckOut</th>
+            <th>Numero de Noches</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for ho in hotel %}
+        <tr>
+            <td>{{ ho.id }}</td>
+            <td>{{ ho.nombre }}</td>
+            <td>{{ ho.CheckIn }}</td>
+            <td>{{ ho.CheckOut }}</td>
+            <td>{{ ho.numeroNoches}}</td>
+            <td>
+                <a
+                  href="{% url 'hotel_update' ho.id %}"
+                  class="btn btn-primary"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                </a>
+                <a
+                  href="{% url 'hotel_delete' ho.id %}"
+                  class="btn btn-danger"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                </a>                
+            </td> 
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}

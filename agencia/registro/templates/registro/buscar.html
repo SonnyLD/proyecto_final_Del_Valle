@@ -1,0 +1,15 @@
+{% extends 'registro/menu.html' %}
+
+{% block titulo %}
+<h1 class="mb-5" style="font-size: 3.8rem;"> BUSCAR </h1>                                
+{% endblock titulo %}
+
+
+{% block contenido %}   
+
+<form method="get" action="{% url 'encontrarPasajeros' %}">
+  <input type="text" name="buscar" placeholder="Buscar por nombre">
+  <button type="submit">Buscar</button>
+</form>
+
+{% endblock contenido %}

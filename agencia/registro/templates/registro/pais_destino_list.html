@@ -1,0 +1,58 @@
+{% extends 'registro/menu.html' %}
+
+{% block titulo %}
+<h1 class="mb-5"style="font-size: 3.8rem;">Pais de destino</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    .table {
+        color: white; /* Color de texto blanco */
+        margin: 0 auto; /* Centrar la tabla */
+        width: 80%; /* Ancho de la tabla reducido */
+    }
+    .table th, .table td {
+        padding: 0.5rem; /* Reducir el padding de las celdas */
+    }
+    .table th {
+        background-color: #343a40; /* Color de fondo para los encabezados */
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #495057; /* Color de fondo alterno para filas */
+    }
+</style>
+<table>
+    <tr>
+        <td width="200" style="color:white"><h2>Pais de destino</h2></td>
+        <td>
+            <a href="{% url 'pais_destino_create' %}" class="btn btn-primary btn-sm">
+                <i class="fa fa-plus fa-lg" title="Crear"></i>
+            </a>
+        </td>        
+    </tr>
+</table>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Fecha de Llegada</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for p in pais_destino %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.fechaLLegada }}</td>
+            <td>
+                <a href="{% url 'pais_destino_update' p.id %}" class="btn btn-primary btn-sm">Editar</a>
+                <a href="{% url 'pais_destino_delete' p.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}
+

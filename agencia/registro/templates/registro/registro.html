@@ -1,0 +1,46 @@
+{% extends "registro/menu.html" %}
+
+{% block titulo %}
+<h1 class="mb-5 text-center text-white"style="font-size: 3.8rem;">Registración</h1>                                
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    .edit-profile-form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Alinear todo a la izquierda */
+        color: white;
+        width: 100%; /* Ajustar al ancho completo */
+        max-width: 600px; /* Opcional: máximo ancho del formulario */
+        margin: auto; /* Centrar horizontalmente el contenedor */
+    }
+    table {
+        width: 100%;
+        color: white;
+    }
+    .form-group label {
+        text-align: left;
+        color: white;
+    }
+    .edit-profile-form .helptext {
+        font-size: 1.0rem; /* Reducir tamaño de fuente para el texto de ayuda */
+    }
+    input[type="submit"] {
+        margin-top: 20px;
+        margin-left: 170px; /* Mover a la derecha */
+    }
+</style>
+
+<div class="edit-profile-form">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Registrarse" class="btn btn-primary">
+    </form>
+    <span class="helptext" id="id_username_helptext"></span>
+</div>
+
+{% endblock contenido %}

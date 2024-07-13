@@ -1,0 +1,32 @@
+{% extends "registro/menu.html" %}
+
+{% block titulo %}
+<h1 class="mb-5 text-center"style="font-size: 3.8rem;">Login</h1>                                
+{% endblock titulo %}
+
+{% block contenido %}
+    <style>
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+        .login-form table {
+            color: white;
+        }
+        .login-form input[type="submit"] {
+            margin-top: 20px;
+            width: 100px;
+        }
+    </style>
+
+    <form action="" method="post" class="login-form">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Aplicar">
+    </form>
+{% endblock contenido %}
+

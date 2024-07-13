@@ -1,0 +1,46 @@
+{% extends 'registro/menu.html' %}
+
+{% block titulo %}
+<h1 class="mb-5 text-center text-white"style="font-size: 3.8rem;">Editar perfil</h1>                                
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    .edit-profile-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+    }
+    .edit-profile-form form {
+        width: 100%;
+        max-width: 600px;
+        color: white;
+    }
+    .edit-profile-form .form-group {
+        color: white;
+    }
+    .edit-profile-form button {
+        margin-top: 20px;
+        width: 100%;
+    }
+    .edit-profile-form .helptext {
+        font-size: 1.5rem; /* Reducir tamaño de fuente para el texto de ayuda */
+    }
+    .edit-profile-form #id_password {
+      margin-bottom: 18px; /* Espacio adicional debajo del texto 'No se ha establecido la clave' */
+  }
+</style>
+
+<div class="edit-profile-form">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary mt-2">Cancelar</a>
+    </form>
+    <p>
+        <span class="helptext" id="id_password_helptext"> </span>
+    </p>
+</div>
+{% endblock contenido %}

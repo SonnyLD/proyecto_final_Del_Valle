@@ -1,0 +1,14 @@
+{% extends 'registro/menu.html' %}
+
+{% block titulo %}
+<h1 class="mb-5"style="font-size: 3.8rem;">Agregar Avatar</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Subir</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock contenido %}

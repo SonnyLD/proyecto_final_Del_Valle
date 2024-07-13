@@ -1,0 +1,68 @@
+{% extends 'registro/menu.html' %}
+
+{% block titulo %}
+<h1 class="mb-5 text-center text-white", style="font-size: 3.8rem;">Pasajero</h1>                                
+{% endblock titulo %}
+
+{% block contenido %}   
+
+<style>
+    .table {
+        color: white; /* Color de texto blanco */
+        margin: 0 auto; /* Centrar la tabla */
+        width: 80%; /* Ancho de la tabla reducido */
+    }
+    .table th, .table td {
+        padding: 0.5rem; /* Reducir el padding de las celdas */
+    }
+    .table th {
+        background-color: #343a40; /* Color de fondo para los encabezados */
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #495057; /* Color de fondo alterno para filas */
+    }
+</style>
+
+<table>
+    <tr>
+        <td width="200"style="color:white"><h2>Registros</h2></td>
+        <td>
+            <a href="{% url 'registro_form' %}" class="btn btn-primary btn-sm">
+                <i class="fa fa-plus fa-lg" title="Crear"></i>
+            </a>
+        </td>        
+    </tr>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Sexo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for pa in pasajero %}
+        <tr>
+            <td>{{ pa.id }}</td>
+            <td>{{ pa.nombre }}</td>
+            <td>{{ pa.apellido }}</td>
+            <td>{{ pa.email }}</td>
+            <td>{{ pa.sexo }}</td>
+            <td>
+                <a href="{% url 'registro_update' pa.id %}" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                    <i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                </a>
+                <a href="{% url 'registro_delete' pa.id %}" class="btn btn-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                    <i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                </a>                
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}

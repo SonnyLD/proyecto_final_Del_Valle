@@ -1,0 +1,14 @@
+{% extends 'registro/menu.html' %}
+
+{% block titulo %}
+<h1 class="mb-3" style="color: white; font-size: 3.8rem;">Confirmar eliminación</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+<form method="post">
+    {% csrf_token %}
+    <p style="color: white;">¿Estás seguro de que deseas eliminar este país de destino?</p>
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="{% url 'pais_destino_list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock contenido %}

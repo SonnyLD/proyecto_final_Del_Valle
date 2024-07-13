@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %} <!--- carga en Django todos los archivos estaticos -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Agencia de Viajes ChoiceIn</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}"> <!--- carga en Django todos los archivos estaticos -->
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> <!--- carga en Django todos los archivos estaticos -->
+        <link rel="stylesheet" href="{% static 'css/fontAwesome.css' %}"> <!--- carga en Django todos los archivos estaticos -->
+        <link rel="stylesheet" href="{% static 'css/hero-slider.css' %}"> <!--- carga en Django todos los archivos estaticos -->
+        <link rel="stylesheet" href="{% static 'css/templatemo-main.css' %}"> <!--- carga en Django todos los archivos estaticos -->
+        <link rel="stylesheet" href="{% static 'css/owl-carousel.css' %}"> <!--- carga en Django todos los archivos estaticos -->
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <!-- Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+
+        <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script> <!--- carga en Django todos los archivos estaticos -->
+    </head>
+<!--
+Vanilla Template
+https://templatemo.com/tm-526-vanilla
+-->
+<body>
+
+    <style>
+        .fixed-side-navbar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+        .nav-link {
+            text-align: center;
+            width: 100%;
+        }
+        .text-center {
+            margin: 20px 0;
+        }
+        .btn {
+            width: 150px;
+            margin: 10px 0;
+        }
+        .user-info {
+            text-align: center;
+            color: green;
+        }
+    </style>
+
+    <div class="fixed-side-navbar">
+        {% if user.is_authenticated %}
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><span>Inicio</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'pasajero' %}"><span>Pasajero</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'hotel' %}"><span>Hotel</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'habitacion' %}"><span>Habitacion</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'pais_destino' %}"><span>Pais de Destino</span></a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'buscarPasajeros' %}">
+                    <i class="fa fa-search" aria-hidden="true"></i> Buscar
+                </a>
+            </li>
+        </ul>
+        <div class="text-center">
+            <a href="{% url 'agregarAvatar' %}">
+                <img src="{{ request.session.avatar }}" height="40px" width="40px" alt="mi foto">
+            </a>
+        </div>
+            <p style="color:green"> [{{user.first_name}} {{user.last_name}}]</p>
+            <a class="btn btn-success mb-2" href="{% url 'editProfile' %}">Perfil</a>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
+        {% else %}
+            <div class="d-flex flex-column align-items-center">
+                <a class="btn btn-primary mb-2 btn-lg" href="{% url 'login' %}">Login</a>
+                <a class="btn btn-success btn-lg" href="{% url 'registro' %}">Registrate</a>
+            </div>
+        {% endif %}
+    </div>
+    
+
+    <div class="parallax-content baner-content" id="home">
+        <div class="container">
+            <div class="first-content">
+              {% block titulo %}
+                <h1>Choice In</h1>
+              {% endblock titulo %}  
+
+              {% block contenido %}
+                <span><em>Agencia</em> de Viajes</span>
+                {% endblock contenido %}
+                
+                <div class="primary-button">
+                    <a href="{% url 'home' %}">Volver al inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="primary-button">
+                        <a href="#home">Back To Top</a>
+                    </div>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google"></i></a></li>
+                        <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                    </ul>
+                    <p>Copyright &copy; 2024 Choice In 
+            
+            		- Design: <a rel="nofollow noopener" href="{% url 'acerca' %}"><em>Sonny Del Valle</em></a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script> <!--- carga en Django todos los archivos estaticos -->
+    <script src="{% static 'js/plugins.js' %}"></script> <!--- carga en Django todos los archivos estaticos -->
+    <script src="{% static 'js/main.js' %}"></script> <!--- carga en Django todos los archivos estaticos -->
+    <script>
+        function openCity(cityName) {
+            var i;
+            var x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";  
+            }
+            document.getElementById(cityName).style.display = "block";  
+        }
+    </script>
+
+    <script>
+        $(document).ready(function(){
+          // Add smooth scrolling to all links
+          $(".fixed-side-navbar a, .primary-button a").on('click', function(event) {
+
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+              // Prevent default anchor click behavior
+              event.preventDefault();
+
+              // Store hash
+              var hash = this.hash;
+
+              // Using jQuery's animate() method to add smooth page scroll
+              // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+              $('html, body').animate({
+                scrollTop: $(hash).offset().top
+              }, 800, function(){
+           
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+              });
+            } // End if
+          });
+        });
+    </script>
+
+</body>
+</html>

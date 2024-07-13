@@ -1,0 +1,25 @@
+{% extends 'registro/menu.html' %}
+
+{% block titulo %}
+<h1 class="mb-5 text-white" style="font-size: 3.8rem;">Formulario de pasajero</h1>                                
+{% endblock titulo %}
+
+{% block contenido %}   
+<style>
+    table {
+        color: white; /* Color del texto de la tabla */
+    }
+    input[type="submit"] {
+        color: white; /* Color del texto del botón */
+    }
+</style>
+
+<form action="" method="post">
+  {% csrf_token %}
+  <table>
+      {{ form.as_table }}
+  </table>
+  <input type="submit" value="Guardar" class="btn btn-primary" style="margin-left: 10px;">
+</form>
+
+{% endblock contenido %}

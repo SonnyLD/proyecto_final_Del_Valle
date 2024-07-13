@@ -1,0 +1,81 @@
+{% extends 'registro/menu.html' %}
+
+{% block titulo %}
+<h1 class="mb-5" style="font-size: 3.8rem;">Habitaciones</h1>                                
+{% endblock titulo %}
+
+{% block contenido %}   
+
+<style>
+    .table {
+        color: white; /* Color de texto blanco */
+        margin: 0 auto; /* Centrar la tabla */
+        width: 80%; /* Ancho de la tabla reducido */
+    }
+    .table th, .table td {
+        padding: 0.5rem; /* Reducir el padding de las celdas */
+    }
+    .table th {
+        background-color: #343a40; /* Color de fondo para los encabezados */
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #495057; /* Color de fondo alterno para filas */
+    }
+    .table-container {
+        width: 80%; /* Ancho de la tabla reducido */
+        margin: 0 auto; /* Centrar la tabla */
+    }
+    .table-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .table-actions .btn {
+        --bs-btn-padding-y: .25rem;
+        --bs-btn-padding-x: .5rem;
+        --bs-btn-font-size: .75rem;
+    }
+    .page-title {
+        font-size: 2rem;
+    }
+</style>
+
+<div class="table-container">
+    <div class="table-actions">
+        <h2 style="color:white">Habitaciones</h2>
+        <a href="{% url 'habitacion_create' %}" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus fa-lg" title="Crear"></i>
+        </a>        
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero de habitacion</th>
+                <th>Doble</th>
+                <th>Simple</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for h in habitacion %}
+            <tr>
+                <td>{{ h.id }}</td>
+                <td>{{ h.numero }}</td>
+                <td>{{ h.doble }}</td>
+                <td>{{ h.simple }}</td>
+                <td>
+                    <a href="{% url 'habitacion_update' h.id %}" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        <i class="fa fa-edit fa-sm" title="Editar"></i>
+                    </a>
+                    <a href="{% url 'habitacion_delete' h.id %}" class="btn btn-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        <i class="fa fa-trash fa-sm" title="Eliminar"></i>
+                    </a>                
+                </td> 
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock contenido %}

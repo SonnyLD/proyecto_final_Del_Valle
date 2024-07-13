@@ -1,0 +1,19 @@
+{% extends 'registro/menu.html' %}
+
+{% block titulo %}
+<h1 class="mb-5" style="color: white; font-size:  3.8rem;">Crear/Actualizar Pais de Destino</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+<form method="post">
+    {% csrf_token %}
+    <div style="color: white;"> <!-- Make all form text white -->
+        {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-primary" style="color: white; margin-left: 10px; font-size: 0.8rem;">
+        {% if form.instance.pk %}Actualizar{% else %}Crear{% endif %}
+    </button>
+    <a href="{% url 'pais_destino_list' %}" class="btn btn-secondary mt-2" style="font-size: 0.8rem;">Cancelar</a>
+</form>
+{% endblock contenido %}
+

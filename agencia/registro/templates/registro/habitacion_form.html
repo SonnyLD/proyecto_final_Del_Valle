@@ -1,0 +1,33 @@
+{% extends 'registro/menu.html' %}
+
+{% block titulo %}
+<h1 class="mb-5 text-white" style="font-size: 3.8rem;">
+    {% if form.instance.pk %}Actualizar{% else %}Crear{% endif %} Habitación
+</h1>                                
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    .form-white {
+        color: white;
+    }
+    .form-white .form-control {
+        color: white;
+    }
+    .form-white label {
+        color: white;
+    }
+    .form-white .btn {
+        color: white;
+    }
+</style>
+
+<form method="post" class="form-white">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary" style="color: white; margin-left: 10px;">
+        {% if form.instance.pk %}Actualizar{% else %}Crear{% endif %}
+    </button>
+</form>
+{% endblock contenido %}
+
